@@ -40,6 +40,22 @@ class RequestHandler(BaseHTTPRequestHandler):
         connection.close()
 
         return users
+    # using pandas
+    """
+    def fetch_users(self):
+    try:
+        connection = get_db_connection()
+        # Use pandas to read SQL query directly into a DataFrame
+        df = pd.read_sql('SELECT * FROM users', connection)
+        users = df.to_dict(orient='records')  # Convert DataFrame to a list of dictionaries
+    except mysql.connector.Error as err:
+        return {"error": str(err)}
+    finally:
+        if 'connection' in locals():
+            connection.close()
+
+    return users
+    """
 
 def run(server_class=HTTPServer, handler_class=RequestHandler):
     server_address = ('', 5000)  
